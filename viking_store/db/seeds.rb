@@ -18,14 +18,17 @@ address_arr = []
   b.save
 end
 
+user_array = []
 25.times do
+
   a = User.new
   a.name = Faker::Name.name
   a.phone = Faker::PhoneNumber.phone_number
   a.email = Faker::Internet.email
   a.credit_card = Faker::Code.ean #yeah treat this as creditcardnumber
-  a.billing_id = address_arr.shift.id
+  a.billing_id = address_arr.sample.id
   a.address_id = address_arr.sample.id
+  user_array << a
   a.save
 end
 
@@ -49,4 +52,17 @@ product_arr = []
   product_arr << c
   c.save
 end
+
+orders_arr = []
+50.times do
+  z = Order.new
+  z.check_date = Faker::Date.backward(rand(50))
+  z.user_id = user_array.sample.id
+  z.shipping_id = address_arr.sample.id
+  z.billing_id = address_arr.sample.id
+  orders_arr << z
+  z.save
+end
+
+
 

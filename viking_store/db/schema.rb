@@ -33,12 +33,12 @@ ActiveRecord::Schema.define(version: 20160802215210) do
 
   create_table "orders", force: :cascade do |t|
     t.datetime "check_date"
-    t.boolean  "check_out",   default: true
+    t.boolean  "check_out",   default: false
     t.integer  "user_id"
     t.integer  "shipping_id"
     t.integer  "billing_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "products", force: :cascade do |t|
